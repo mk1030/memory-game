@@ -1,0 +1,23 @@
+- I would start by writing up a plan. Think about how the game is played. For instance:
+
+    The game is played with a deck of cards
+    The cards are laid out in a grid face down
+    A card is selected
+    When a card is selected, that card is flipped to reveal its value
+    A second card is selected
+    See #4
+    If card 1 value equals card 2 value, the cards match. The cards do not flip back over.
+    If card 1 does not equal card 2, the cards flip face down.
+    If all cards match, show a modal with time, number of moves, number of stars.
+
+You can do this in as much detail or as little detail. Also, you can add things like what constitutes a move, when will the timer be set, how stars are calculated. The more decisions you can make up front, the easier it will be to start.
+
+I would also think about things like value types. What type is a deck? What type does the deck contain? Things like that. The more you can conceptualize upfront, the easier it will be in development. IMO
+
+Something else I would do is try to identify major functions. What would these functions do? You can simply add them in the beginning with a console.log(); and add some comments about what you want them to do.
+
+For instance: calculateStars(); calculateMoves(); startTimer(); endTimer();
+
+Things like that.
+
+Naturally, everyone starts their own way, but I find this initial process very useful on some projects.

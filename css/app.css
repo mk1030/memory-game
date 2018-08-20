@@ -1,85 +1,70 @@
-.deck {
+
+
+
+.cards {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: centered;
+
+  margin: 0 auto;
+
+
+
 
 }
 
 .card {
-height: 125px;
-width: 125px;
-background: #2e3d49;
-margin: 10px;
+    flex: 0 1 calc(25% - 1em);
+    box-sizing: border-box;
+    margin: 1rem .25em;
+    background-color: #ccc;
+    height: 100px;
 }
-
-
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {
-.deck {
-   background-color: pink !important;
-   width: 300px;
- min-height: 520px;
-   margin: 0 auto;
+
+.cards {
+
+    background-color: red;
 }
-.card {
-height: 55px;
-width: 55px;
-align-items: center; 
+
 
 
  }
-}
+
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-.deck {
-   background-color: red !important;
-   width: 500px;
- min-height: 520px;
-   margin: 0 auto;
-}
-.card {
-height: 100px;
-width: 100px;
-align-items: center; 
+  .cards {
 
- }
+  }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .deck {
-      background-color: lightblue !important;
-      width: 660px;
-    min-height: 680px;
-      margin: 0 auto;
+  .cards {
+
+      background-color: yellow;
   }
 
-  .card {
-  height: 125px;
-  width: 125px;
-  align-items: center; 
-}
 
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-.deck {
-  background-color: purple !important;
-  width: 660px;
-min-height: 680px;
-  margin: 0 auto;
-}
+  .cards {
+
+      background-color: purple;
+  }
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-.deck {
-  background-color: yellow !important;
-  width: 660px;
-min-height: 680px;
-  margin: 0 auto;
-}
 
+  .cards {
+
+      background-color: green;
+  }
 
 
  }
