@@ -1,36 +1,58 @@
-
-
+.container {
+  text-align: center;
+}
 
 .cards {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: centered;
-
   margin: 0 auto;
-
-
-
-
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
 .card {
     flex: 0 1 calc(25% - 1em);
     box-sizing: border-box;
     margin: 1rem .25em;
-    background-color: #ccc;
-    height: 100px;
+    background-color:  	#00CED1;
+    height: 150px;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: white;
+
+
 }
+
+
+.score-panel {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.stars {
+  display: inline-block;
+  list-style: none;
+  margin-right: 10px;
+}
+.stars li {
+  display: inline;
+
+}
+
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {
 
-.cards {
-
-    background-color: red;
+.card {
+  font-size: 24px;
 }
-
-
 
  }
 
@@ -43,28 +65,18 @@
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .cards {
-
-      background-color: yellow;
-  }
-
 
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .cards {
 
-      background-color: purple;
-  }
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-
-  .cards {
-
-      background-color: green;
-  }
-
+body {
+  width: 70%;
+  margin: 0 auto;
+}
 
  }
