@@ -31,8 +31,12 @@
   background-color: #00CED1;
 }
 
+.card.disabled {
+  pointer-events: none; 
+}
+
 .card i {
-  display: none; 
+  display: none;
 }
 
 .score-panel {

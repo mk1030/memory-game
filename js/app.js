@@ -29,7 +29,7 @@ cards = $.makeArray( cards );
 
 for (var i = 0; i < cards.length; i++){
   $( cards[i]).click(function() {
-   $( this).toggleClass( "open" ).find("i").show();
+   $( this).toggleClass( "open disabled" ).find("i").toggle();
 });
 
 };
