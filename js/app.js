@@ -38,15 +38,17 @@ for (var i = 0; i < cards.length; i++){
 
 
 
+const deck = document.querySelector(".cards");
+function startGame(){
+   var shuffledCards = shuffle(cards);
+   for (var i= 0; i < shuffledCards.length; i++){
+      [].forEach.call(shuffledCards, function(item){
+         deck.appendChild(item);
+      });
+   }
+}
 
-
-
-
-
-
-shuffle(cards);
-
-
+window.onload = startGame();
 
 // var icards = cards[x].getElementsByTagName("i");
 
