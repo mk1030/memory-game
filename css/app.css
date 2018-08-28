@@ -32,7 +32,11 @@
 }
 
 .card.disabled {
-  pointer-events: none; 
+  pointer-events: none;
+}
+
+.card.eval {
+  background-color: red;
 }
 
 .card i {

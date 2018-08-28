@@ -1,68 +1,97 @@
-/*
- * Create a list that holds all of your cards
- */
+$(document).ready(function() {
 
- $( document ).ready(function() {
+  let cards = $(".cards").children();
 
+  cards = $.makeArray(cards);
 
+  openCards = [];
 
+  const deck = document.querySelector(".cards");
 
-   // Shuffle function from http://stackoverflow.com/a/2450976
-   function shuffle(array) {
-       var currentIndex = array.length, temporaryValue, randomIndex;
-
-       while (currentIndex !== 0) {
-           randomIndex = Math.floor(Math.random() * currentIndex);
-           currentIndex -= 1;
-           temporaryValue = array[currentIndex];
-           array[currentIndex] = array[randomIndex];
-           array[randomIndex] = temporaryValue;
-       }
-
-       return array;
-   }
+  var len;
 
 
-let cards = $(".cards").children();
+  // Shuffle function from http://stackoverflow.com/a/2450976
+  function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
 
-cards = $.makeArray( cards );
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
 
-for (var i = 0; i < cards.length; i++){
-  $( cards[i]).click(function() {
-   $( this).toggleClass( "open disabled" ).find("i").toggle();
+    return array;
+  }
+
+
+
+  function startGame() {
+    var shuffledCards = shuffle(cards);
+
+    $(shuffledCards).each(function(index, value) {
+      deck.append(value);
+
+    });
+
+  }
+
+
+  startGame();
+
+
+  for (var i = 0; i < cards.length; i++) {
+    $(cards[i]).click(function() {
+      $(this).toggleClass("open disabled").find("i").toggle();
+
+      var open = $(this).hasClass( "open" );
+
+      if (open) {
+        openCards.push($(this));
+      }
+
+    // .find("i").attr("class").slice(3)
+
+      len = openCards.length
+
+      if(len ===2) {
+         $.each(openCards, function(index, value) {
+
+          var card1 =  openCards[0].find("i").attr("class").slice(3);
+          var card2 =  openCards[1].find("i").attr("class").slice(3);
+
+
+          if (card1 != card2) {
+            console.log("not a match!")
+          $(openCards[0]).addClass("eval").removeClass("disabled");
+          $(openCards[1]).addClass("eval").removeClass("disabled");
+          
+          }
+
+          else {
+            console.log("It's a match!");
+          }
+
+         });
+
+
+      }
+
+
+
+    });
+
+  };
+
+
+
+
+
+
 });
-
-};
-
-
-
-
-
-const deck = document.querySelector(".cards");
-function startGame(){
-   var shuffledCards = shuffle(cards);
-   for (var i= 0; i < shuffledCards.length; i++){
-      [].forEach.call(shuffledCards, function(item){
-         deck.appendChild(item);
-      });
-   }
-}
-
-window.onload = startGame();
-
-// var icards = cards[x].getElementsByTagName("i");
-
-});
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-// for (var x = 0; x < cards.length; x++){
-// }
-// .find( "i" ).toggleClass("fa-diamond")
 
 /*
  * set up the event listener for a card. If a card is clicked:
