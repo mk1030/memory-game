@@ -39,6 +39,10 @@
   background-color: red;
 }
 
+.card.test {
+  background-color: green;
+}
+
 .card i {
   display: none;
 }
