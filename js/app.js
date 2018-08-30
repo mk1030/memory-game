@@ -46,7 +46,9 @@ $(document).ready(function() {
   for (var i = 0; i < cards.length; i++) {
     $(cards[i]).click(function() {
 
-      $(this).toggleClass("open disabled").find("i").toggle();
+
+    //on click, open the card make it so it's not clickable and show the icon
+   $(this).toggleClass("open disabled").find("i").toggle();
 
       var open = $(this).hasClass("open");
 
@@ -58,16 +60,28 @@ $(document).ready(function() {
 
       len = openCards.length
 
-      if (len === 2) {
-        console.log("at 2");
-        $.each(openCards, function(index, value) {
+      if (len <= 1) {
+        console.log(openCards);
+
+      }
+
+
+
+
+      else if (len === 2) {
+      console.log(openCards);
 
           var card1 = openCards[0].find("i").attr("class").slice(3);
           var card2 = openCards[1].find("i").attr("class").slice(3);
 
 
           if (card1 != card2) {
-            console.log("not a match!")
+
+            //we are going to make it red for a few seconds, and then we are going to:
+            //remove the red color
+            //close the cards cdfsdf
+            //and make it so you can click it again
+
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
 
@@ -78,12 +92,15 @@ $(document).ready(function() {
 
             });
 
+            //Then we are going to empty out the array
 
+            openCards = [];
 
 
           } else if (card1 === card2) {
             console.log("It's a match!");
 
+
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval");
 
@@ -94,16 +111,18 @@ $(document).ready(function() {
 
             });
 
-
+            openCards = [];
 
           }
 
 
 
-        });
-openCards = [];
+
+
 
       }
+
+
 
 
 
