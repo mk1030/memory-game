@@ -50,6 +50,7 @@ $(document).ready(function() {
     //on click, open the card make it so it's not clickable and show the icon
    $(this).toggleClass("open disabled").find("i").toggle();
 
+      //if a card has the open array, then push it to the OpenCards array
       var open = $(this).hasClass("open");
 
       if (open) {
@@ -57,9 +58,12 @@ $(document).ready(function() {
       }
 
 
-
+      //use this to calculate the length of the OpenCards array, so that it can be used to do calculations below:
       len = openCards.length
 
+
+
+      //if one card open
       if (len <= 1) {
         console.log(openCards);
 
@@ -67,14 +71,14 @@ $(document).ready(function() {
 
 
 
-
+    //if two cards are open
       else if (len === 2) {
       console.log(openCards);
 
           var card1 = openCards[0].find("i").attr("class").slice(3);
           var card2 = openCards[1].find("i").attr("class").slice(3);
 
-
+          //cards don't match
           if (card1 != card2) {
 
             //we are going to make it red for a few seconds, and then we are going to:
@@ -96,7 +100,7 @@ $(document).ready(function() {
 
             openCards = [];
 
-
+            //cards match
           } else if (card1 === card2) {
             console.log("It's a match!");
 
