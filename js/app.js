@@ -88,11 +88,13 @@ $(document).ready(function() {
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
+              $( this ).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
+              $( this ).dequeue();
 
             });
 
@@ -106,12 +108,14 @@ $(document).ready(function() {
 
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
-              $(this).removeClass("eval");
+              $(this).removeClass("eval").dequeue();
+              $( this ).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
-              $(this).removeClass("eval");
+              $(this).removeClass("eval").dequeue();
+              $( this ).dequeue();
 
             });
 
