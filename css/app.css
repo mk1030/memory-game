@@ -65,6 +65,13 @@
 
 }
 
+.restart {
+  cursor: pointer;
+}
+
+
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { text-align: center; float: none; }
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {

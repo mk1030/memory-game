@@ -1,10 +1,12 @@
 $(document).ready(function() {
 
+
+
   let cards = $(".cards").children();
 
-  cards = $.makeArray(cards);
+  let openCards = [];
 
-  openCards = [];
+  let matchCards = [];
 
   const deck = document.querySelector(".cards");
 
@@ -28,6 +30,8 @@ $(document).ready(function() {
   }
 
 
+//make cards into an array
+cards = $.makeArray(cards);
 
   function startGame() {
     var shuffledCards = shuffle(cards);
@@ -40,10 +44,21 @@ $(document).ready(function() {
   }
 
 
+    $( ".restart" ).click(function() {
+      window.location.reload();
+    });
+
+
+
+
   startGame();
 
+  //for (var i = 0; i < cards.length; i++) {
 
-  for (var i = 0; i < cards.length; i++) {
+$(cards).each(function(i) {
+
+
+    //add a click function to each card
     $(cards[i]).click(function() {
 
 
@@ -105,7 +120,7 @@ $(document).ready(function() {
             //cards match
           } else if (card1 === card2) {
             console.log("It's a match!");
-
+            matchCards.push($(this));
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval").dequeue();
@@ -119,7 +134,24 @@ $(document).ready(function() {
 
             });
 
+            // Empty out array again
             openCards = [];
+
+            if (matchCards.length === 8) {
+              $( "#dialog" ).dialog({
+                dialogClass: "no-close",
+                modal: true,
+                buttons: [
+                  {
+                    text: "Play Again",
+                    click: function() {
+                      $( this ).dialog( "close" );
+                            window.location.reload();
+                    }
+                  }
+                ]
+              });
+            }
 
           }
 
@@ -136,9 +168,7 @@ $(document).ready(function() {
 
     });
 
-  };
-
-
+  });
 
 
 
