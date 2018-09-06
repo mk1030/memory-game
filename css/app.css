@@ -69,6 +69,7 @@
   cursor: pointer;
 }
 
+.hidden { display: none }
 
 
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { text-align: center; float: none; }

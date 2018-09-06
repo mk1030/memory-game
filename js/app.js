@@ -1,17 +1,16 @@
 $(document).ready(function() {
 
-
-
   let cards = $(".cards").children();
 
   let openCards = [];
 
   let matchCards = [];
 
+  let m = 0;
+
   const deck = document.querySelector(".cards");
 
   var len;
-
 
   // Shuffle function from http://stackoverflow.com/a/2450976
   function shuffle(array) {
@@ -29,7 +28,6 @@ $(document).ready(function() {
     return array;
   }
 
-
 //make cards into an array
 cards = $.makeArray(cards);
 
@@ -42,13 +40,9 @@ cards = $.makeArray(cards);
     });
 
   }
-
-
     $( ".restart" ).click(function() {
       window.location.reload();
     });
-
-
 
 
   startGame();
@@ -57,10 +51,8 @@ cards = $.makeArray(cards);
 
 $(cards).each(function(i) {
 
-
     //add a click function to each card
     $(cards[i]).click(function() {
-
 
     //on click, open the card make it so it's not clickable and show the icon
    $(this).toggleClass("open disabled").find("i").toggle();
@@ -72,24 +64,16 @@ $(cards).each(function(i) {
         openCards.push($(this));
       }
 
-
       //use this to calculate the length of the OpenCards array, so that it can be used to do calculations below:
       len = openCards.length
 
-
-
       //if one card open
       if (len <= 1) {
-        console.log(openCards);
-
       }
-
-
 
     //if two cards are open
       else if (len === 2) {
-      console.log(openCards);
-
+          m++;
           var card1 = openCards[0].find("i").attr("class").slice(3);
           var card2 = openCards[1].find("i").attr("class").slice(3);
 
@@ -119,7 +103,6 @@ $(cards).each(function(i) {
 
             //cards match
           } else if (card1 === card2) {
-            console.log("It's a match!");
             matchCards.push($(this));
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
@@ -138,6 +121,9 @@ $(cards).each(function(i) {
             openCards = [];
 
             if (matchCards.length === 8) {
+
+
+
               $( "#dialog" ).dialog({
                 dialogClass: "no-close",
                 modal: true,
@@ -152,36 +138,44 @@ $(cards).each(function(i) {
                 ]
               });
             }
-
           }
 
-
-
-
+          //Enter Move Code here
 
 
       }
-
-
-
-
 
     });
 
   });
 
+console.log(m);
+
+
+  /*
+  if (m <= 10) {
+    console.log("expert 3 stars");
+          console.log(m);
+    $( "#dialog" ).append( m + " moves" );
+  }
+  else if (m > 10 && m <=20) {
+    console.log("medium 2 stars");
+          console.log(m);
+    $('.stars li:nth-child(3)').hide();
+    $( "#dialog" ).append(  m + " moves" );
+  }
+
+  else if (m > 20 && m < 100){
+    console.log("sucks 1 star");
+          console.log(m);
+            $( "#dialog" ).append( m + " moves" );
+    $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
+
+  }  */
+
+
+
 
 
 
 });
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
