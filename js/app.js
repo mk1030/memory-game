@@ -12,6 +12,10 @@ $(document).ready(function() {
 
   var len;
 
+  var moves = [];
+
+  var totalmoves;
+
   // Shuffle function from http://stackoverflow.com/a/2450976
   function shuffle(array) {
     var currentIndex = array.length,
@@ -74,6 +78,7 @@ $(cards).each(function(i) {
     //if two cards are open
       else if (len === 2) {
           m++;
+          moves.push(m);
           var card1 = openCards[0].find("i").attr("class").slice(3);
           var card2 = openCards[1].find("i").attr("class").slice(3);
 
@@ -122,6 +127,9 @@ $(cards).each(function(i) {
 
             if (matchCards.length === 8) {
 
+              console.log(moves.length);
+            $( "#dialog" ).append(moves.length + " moves" );
+
 
 
               $( "#dialog" ).dialog({
@@ -140,41 +148,36 @@ $(cards).each(function(i) {
             }
           }
 
-          //Enter Move Code here
+
+
+          if ( moves.length <= 10) {
+            $( ".moves" ).append(moves.length + " moves" );
+
+         }
+         else if ( moves.length > 10 &&  moves.length <=20) {
+            $( ".moves" ).append(moves.length + " moves" );
+          $('.stars li:nth-child(3)').hide();
+
+         }
+
+         else if ( moves.length > 20 &&  moves.length < 100){
+            $( ".moves" ).append(moves.length + " moves" );
+
+          $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
+
+          }
 
 
       }
 
+
     });
 
+
+
+
+
   });
-
-console.log(m);
-
-
-  /*
-  if (m <= 10) {
-    console.log("expert 3 stars");
-          console.log(m);
-    $( "#dialog" ).append( m + " moves" );
-  }
-  else if (m > 10 && m <=20) {
-    console.log("medium 2 stars");
-          console.log(m);
-    $('.stars li:nth-child(3)').hide();
-    $( "#dialog" ).append(  m + " moves" );
-  }
-
-  else if (m > 20 && m < 100){
-    console.log("sucks 1 star");
-          console.log(m);
-            $( "#dialog" ).append( m + " moves" );
-    $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
-
-  }  */
-
-
-
 
 
 
