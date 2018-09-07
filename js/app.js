@@ -151,17 +151,17 @@ $(cards).each(function(i) {
 
 
           if ( moves.length <= 10) {
-            $( ".moves" ).append(moves.length + " moves" );
+            $( ".moves" ).text(moves.length + " Moves" );
 
          }
          else if ( moves.length > 10 &&  moves.length <=20) {
-            $( ".moves" ).append(moves.length + " moves" );
+            $( ".moves" ).text(moves.length + " Moves" );
           $('.stars li:nth-child(3)').hide();
 
          }
 
          else if ( moves.length > 20 &&  moves.length < 100){
-            $( ".moves" ).append(moves.length + " moves" );
+            $( ".moves" ).text(moves.length + " Moves" );
 
           $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
 
