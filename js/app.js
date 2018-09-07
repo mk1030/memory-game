@@ -130,6 +130,10 @@ $(cards).each(function(i) {
               console.log(moves.length);
             $( "#dialog" ).append(moves.length + " moves" );
 
+            var countstars = $(".stars ul li").length;
+
+            console.log(countstars);
+
 
 
               $( "#dialog" ).dialog({
