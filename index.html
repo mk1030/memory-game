@@ -6,6 +6,9 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -23,8 +26,8 @@
            		<li><i class="fa fa-star"></i></li>
            	</ul>
 
-           	<span class="moves">3</span> Moves
-            </div
+           	<span class="moves">0 Moves</span> 
+          </div>
 
                <div class="restart">
            		<i class="fa fa-repeat"></i>
@@ -39,7 +42,7 @@
                 <li class="card">
                     <i class="fa fa-paper-plane-o"></i>
                 </li>
-                <li class="card match">
+                <li class="card">
                     <i class="fa fa-anchor"></i>
                 </li>
                 <li class="card">
@@ -48,7 +51,7 @@
                 <li class="card">
                     <i class="fa fa-cube"></i>
                 </li>
-                <li class="card match">
+                <li class="card">
                     <i class="fa fa-anchor"></i>
                 </li>
                 <li class="card">
@@ -84,11 +87,17 @@
             </ul>
     </div>
 
+    <div id="dialog" class="hidden" title="Congratulations!">
+    You win!
+    </div>
+
+
+
 
   </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

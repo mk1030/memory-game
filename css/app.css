@@ -32,7 +32,15 @@
 }
 
 .card.disabled {
-  pointer-events: none; 
+  pointer-events: none;
+}
+
+.card.eval {
+  background-color: red;
+}
+
+.card.test {
+  background-color: green;
 }
 
 .card i {
@@ -57,6 +65,14 @@
 
 }
 
+.restart {
+  cursor: pointer;
+}
+
+.hidden { display: none }
+
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { text-align: center; float: none; }
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 575px) {
