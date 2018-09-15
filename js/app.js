@@ -10,11 +10,35 @@ $(document).ready(function() {
 
   const deck = document.querySelector(".cards");
 
-  var len;
+  let len;
 
-  var moves = [];
+  let moves = [];
 
-  var totalmoves;
+  let totalmoves;
+
+  var second = 0;
+  var minute = 0;
+  var timer = $(".timer");
+  var interval;
+
+
+  function startTimer() {
+    interval = setInterval(function() {
+      timer.text(minute + " mins " + second + " secs");
+      second++;
+      if (second == 60) {
+        minute++;
+        second = 0;
+      }
+      if (minute == 60) {
+        hour++;
+        minute = 0;
+      }
+      // 1000 milliseconds = 1 second
+    }, 1000);
+
+
+  }
 
   // Shuffle function from http://stackoverflow.com/a/2450976
   function shuffle(array) {
@@ -32,8 +56,8 @@ $(document).ready(function() {
     return array;
   }
 
-//make cards into an array
-cards = $.makeArray(cards);
+  //make cards into an array
+  cards = $.makeArray(cards);
 
   function startGame() {
     var shuffledCards = shuffle(cards);
@@ -44,39 +68,44 @@ cards = $.makeArray(cards);
     });
 
   }
-    $( ".restart" ).click(function() {
-      window.location.reload();
-    });
+
+  $(".restart").click(function() {
+    window.location.reload();
+  });
 
 
-  startGame();
+  function playGame() {
+    $(cards).each(function(i) {
 
-  //for (var i = 0; i < cards.length; i++) {
+      //add a click function to each card
+      $(cards[i]).click(function() {
+        if (minute || second || hour > 0 ) {
+          console.log("its been clicked");
+        }
 
-$(cards).each(function(i) {
+        else {
+          startTimer();
+        }
+        //on click, open the card make it so it's not clickable and show the icon
+        $(this).toggleClass("open disabled").find("i").toggle();
 
-    //add a click function to each card
-    $(cards[i]).click(function() {
+        //if a card has the open array, then push it to the OpenCards array
+        var open = $(this).hasClass("open");
 
-    //on click, open the card make it so it's not clickable and show the icon
-   $(this).toggleClass("open disabled").find("i").toggle();
+        if (open) {
+          openCards.push($(this));
+        }
 
-      //if a card has the open array, then push it to the OpenCards array
-      var open = $(this).hasClass("open");
+        //use this to calculate the length of the OpenCards array, so that it can be used to do calculations below:
+        len = openCards.length
 
-      if (open) {
-        openCards.push($(this));
-      }
+        //if one card open
+        if (len <= 1) {
 
-      //use this to calculate the length of the OpenCards array, so that it can be used to do calculations below:
-      len = openCards.length
+        }
 
-      //if one card open
-      if (len <= 1) {
-      }
-
-    //if two cards are open
-      else if (len === 2) {
+        //if two cards are open
+        else if (len === 2) {
           m++;
           moves.push(m);
           var card1 = openCards[0].find("i").attr("class").slice(3);
@@ -92,13 +121,13 @@ $(cards).each(function(i) {
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
-              $( this ).dequeue();
+              $(this).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
-              $( this ).dequeue();
+              $(this).dequeue();
 
             });
 
@@ -112,13 +141,13 @@ $(cards).each(function(i) {
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval").dequeue();
-              $( this ).dequeue();
+              $(this).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval").dequeue();
-              $( this ).dequeue();
+              $(this).dequeue();
 
             });
 
@@ -126,73 +155,64 @@ $(cards).each(function(i) {
             openCards = [];
 
             if (matchCards.length === 8) {
+              clearInterval(interval);
 
-              console.log(moves.length);
-        
+              var countstars = $(".stars li:visible").length;
+              $("#dialog").append(moves.length + " moves " + countstars + " stars");
 
-         
-  var countstars = $(".stars li:visible").length;
-
-			
-			    $( "#dialog" ).append(moves.length + " moves " + countstars + " stars" );
-
-
-              $( "#dialog" ).dialog({
+              $("#dialog").dialog({
                 dialogClass: "no-close",
                 modal: true,
-                buttons: [
-                  {
-                    text: "Play Again",
-                    click: function() {
-                      $( this ).dialog( "close" );
-                            window.location.reload();
-                    }
+                buttons: [{
+                  text: "Play Again",
+                  click: function() {
+                    $(this).dialog("close");
+                    window.location.reload();
                   }
-                ]
+                }]
               });
             }
           }
 
 
+          if (moves.length <= 20) {
+            $(".moves").text(moves.length + " Moves");
 
-          if ( moves.length <= 20) {
-            $( ".moves" ).text(moves.length + " Moves" );
-			
-			 
+          } else if (moves.length > 20 && moves.length <= 40) {
+            $(".moves").text(moves.length + " Moves");
+            $('.stars li:nth-child(3)').hide();
+            var countstars = $(".stars li:visible").length;
 
-         }
-         else if ( moves.length > 20 &&  moves.length <=40) {
-            $( ".moves" ).text(moves.length + " Moves" );
-          $('.stars li:nth-child(3)').hide();
-		     var countstars = $(".stars li:visible").length;
 
-            console.log(countstars);
+          } else if (moves.length > 40 && moves.length < 100) {
+            $(".moves").text(moves.length + " Moves");
 
-         }
+            $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
 
-         else if ( moves.length > 40 &&  moves.length < 100){
-            $( ".moves" ).text(moves.length + " Moves" );
+            var countstars = $(".stars li:visible").length;
 
-          $('.stars li:nth-child(2), .stars li:nth-child(3)').hide();
 
-		     var countstars = $(".stars li:visible").length;
 
-            console.log(countstars);
-		  
           }
 
 
-      }
+        }
+
+
+      });
+
+
+
 
 
     });
+  }
 
 
-
-
-
-  });
-
+  startGame();
+  playGame();
+  startTimer();
 
 
 });
+
