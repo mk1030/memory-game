@@ -1,28 +1,30 @@
 $(document).ready(function() {
 
-//define global variables
   let cards = $(".cards").children();
+
   let openCards = [];
+
   let matchCards = [];
+
   let m = 0;
+
   const deck = document.querySelector(".cards");
+
   let len;
+
   let moves = [];
+
   let totalmoves;
-  let second = 0;
-  let minute = 0;
-  let hour = 0;
-  let timer = $(".timer");
-  let interval;
+
+  var second = 0;
+  var minute = 0;
+  var timer = $(".timer");
+  var interval;
 
 
   function startTimer() {
     interval = setInterval(function() {
-
-   timer.text((minute > 1 ? minute +' mins' : minute + ' min') + " " + (second > 1 ? second +' secs' : second + ' sec') );
-
-
-
+      timer.text(minute + " mins " + second + " secs");
       second++;
       if (second == 60) {
         minute++;
@@ -57,7 +59,7 @@ $(document).ready(function() {
   //make cards into an array
   cards = $.makeArray(cards);
 
-  function shuffleCards() {
+  function startGame() {
     var shuffledCards = shuffle(cards);
 
     $(shuffledCards).each(function(index, value) {
@@ -77,14 +79,7 @@ $(document).ready(function() {
 
       //add a click function to each card
       $(cards[i]).click(function() {
-        if (minute || second || hour > 0 ) {
 
-        }
-
-        else {
-          clearInterval(interval);
-          startTimer();
-        }
         //on click, open the card make it so it's not clickable and show the icon
         $(this).toggleClass("open disabled").find("i").toggle();
 
@@ -115,16 +110,16 @@ $(document).ready(function() {
 
             //we are going to make it red for a few seconds, and then we are going to:
             //remove the red color
-            //close the cards
+            //close the cards cdfsdf
             //and make it so you can click it again
 
-            $(openCards[0]).addClass("eval").delay(600).queue(function() {
+            $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
               $(this).dequeue();
 
             });
 
-            $(openCards[1]).addClass("eval").delay(600).queue(function() {
+            $(openCards[1]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval open disabled").find("i").hide();
               $(this).dequeue();
 
@@ -139,13 +134,13 @@ $(document).ready(function() {
             matchCards.push($(this));
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
-              $(this).removeClass("eval");
+              $(this).removeClass("eval").dequeue();
               $(this).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
-              $(this).removeClass("eval");
+              $(this).removeClass("eval").dequeue();
               $(this).dequeue();
 
             });
@@ -155,10 +150,9 @@ $(document).ready(function() {
 
             if (matchCards.length === 8) {
               clearInterval(interval);
-              console.log(timer.text());
 
               var countstars = $(".stars li:visible").length;
-              $("#dialog").append('<br/>' + "<strong>Game Stats:</strong> " + '<br/>'  + moves.length + " moves " + '<br/>' + countstars + " stars" + '<br/>' + timer.text());
+              $("#dialog").append(moves.length + " moves " + countstars + " stars");
 
               $("#dialog").dialog({
                 dialogClass: "no-close",
@@ -209,9 +203,9 @@ $(document).ready(function() {
   }
 
 
-  shuffleCards();
+  startGame();
   playGame();
-
+  startTimer();
 
 
 });
