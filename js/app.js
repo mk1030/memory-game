@@ -20,8 +20,6 @@ $(document).ready(function() {
     interval = setInterval(function() {
 
 
-  //timer.text(minute + ((minute > 1) ?  " mins " :  "0 min ") + second + (second > 1) ? "secs" : " sec");
-
    timer.text((minute > 1 ? minute +' mins' : minute + ' min') + " " + (second > 1 ? second +' secs' : second + ' sec') );
 
 
@@ -81,6 +79,7 @@ $(document).ready(function() {
       //add a click function to each card
       $(cards[i]).click(function() {
         if (minute || second || hour > 0 ) {
+<<<<<<< HEAD
 
         }
 
@@ -104,6 +103,30 @@ $(document).ready(function() {
         //if one card open
         if (len <= 1) {
 
+=======
+          console.log("its been clicked");
+        }
+
+        else {
+          startTimer();
+        }
+        //on click, open the card make it so it's not clickable and show the icon
+        $(this).toggleClass("open disabled").find("i").toggle();
+
+        //if a card has the open array, then push it to the OpenCards array
+        var open = $(this).hasClass("open");
+
+        if (open) {
+          openCards.push($(this));
+        }
+
+        //use this to calculate the length of the OpenCards array, so that it can be used to do calculations below:
+        len = openCards.length
+
+        //if one card open
+        if (len <= 1) {
+
+>>>>>>> da8e645be45d0b8242351909ae80e5e23dca7813
         }
 
         //if two cards are open
@@ -142,13 +165,21 @@ $(document).ready(function() {
             matchCards.push($(this));
 
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
+<<<<<<< HEAD
               $(this).removeClass("eval");
+=======
+              $(this).removeClass("eval").dequeue();
+>>>>>>> da8e645be45d0b8242351909ae80e5e23dca7813
               $(this).dequeue();
 
             });
 
             $(openCards[1]).addClass("eval").delay(1000).queue(function() {
+<<<<<<< HEAD
               $(this).removeClass("eval");
+=======
+              $(this).removeClass("eval").dequeue();
+>>>>>>> da8e645be45d0b8242351909ae80e5e23dca7813
               $(this).dequeue();
 
             });
@@ -158,10 +189,16 @@ $(document).ready(function() {
 
             if (matchCards.length === 8) {
               clearInterval(interval);
+<<<<<<< HEAD
               console.log(timer.text());
 
               var countstars = $(".stars li:visible").length;
               $("#dialog").append('<br/>' + "<strong>Game Stats:</strong> " + '<br/>'  + moves.length + " moves " + '<br/>' + countstars + " stars" + '<br/>' + timer.text());
+=======
+
+              var countstars = $(".stars li:visible").length;
+              $("#dialog").append(moves.length + " moves " + countstars + " stars");
+>>>>>>> da8e645be45d0b8242351909ae80e5e23dca7813
 
               $("#dialog").dialog({
                 dialogClass: "no-close",
@@ -210,11 +247,18 @@ $(document).ready(function() {
 
     });
   }
+<<<<<<< HEAD
 
 
   shuffleCards();
   playGame();
+=======
+>>>>>>> da8e645be45d0b8242351909ae80e5e23dca7813
 
+
+  startGame();
+  playGame();
+  startTimer();
 
 
 });
