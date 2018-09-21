@@ -14,22 +14,25 @@ $(document).ready(function() {
   let timer = $(".timer");
   let interval;
 
-  //timer function
-  function startTimer() {
-    interval = setInterval(function() {
-      timer.text((minute > 1 ? minute + ' mins' : minute + ' min') + " " + (second > 1 ? second + ' secs' : second + ' sec'));
-      second++;
-      if (second == 60) {
-        minute++;
-        second = 0;
-      }
-      if (minute == 60) {
-        hour++;
-        minute = 0;
-      }
-      // 1000 milliseconds = 1 second
-    }, 1000);
-  }
+
+  function startTimer () {
+
+         timer.text((minute > 1 ? minute + ' mins' : minute + ' min') + " " + (second > 1 ? second + ' secs' : second + ' sec'));
+       second++;
+        if (second == 60) {
+          minute++;
+          second = 0;
+         }
+        if (minute == 60) {
+           hour++;
+           minute = 0;
+         }
+
+    };
+
+intervalID = setInterval(startTimer, 1000);
+
+
 
   // Shuffle function from http://stackoverflow.com/a/2450976
   function shuffle(array) {
@@ -57,7 +60,7 @@ $(document).ready(function() {
   $(".restart").click(function() {
     window.location.reload();
   });
-  
+
   //function that contains game logic
   function playGame() {
     $(cards).each(function(i) {
@@ -65,8 +68,9 @@ $(document).ready(function() {
       $(cards[i]).click(function() {
         if (minute || second || hour > 0) {
         } else {
-          clearInterval(interval);
+          clearInterval(intervalID);
           startTimer();
+          setInterval(startTimer, 1000);
         }
         //on click, open the card make it so it's not clickable and show the icon
         $(this).toggleClass("open disabled").find("i").toggle();
@@ -117,7 +121,7 @@ $(document).ready(function() {
             openCards = [];
             //what happens when all the cards are matched.
             if (matchCards.length === 8) {
-              clearInterval(interval);
+              clearInterval(intervalID);
               console.log(timer.text());
               var countstars = $(".stars li:visible").length;
               $("#dialog").append('<br/>' + "<strong>Game Stats:</strong> " + '<br/>' + moves.length + " moves " + '<br/>' + countstars + " stars" + '<br/>' + timer.text());
