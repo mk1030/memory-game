@@ -6,6 +6,7 @@ $(document).ready(function() {
   //m keeps track of the moves made throught game play.
   let m = 0;
   const deck = document.querySelector(".cards");
+  //len stores length of the openCards array
   let len;
   let moves = [];
   let totalmoves;
@@ -118,6 +119,7 @@ $(document).ready(function() {
             //cards match
           } else if (card1 === card2) {
             matchCards.push($(this));
+            //Note when you use queue, you also needt o use dequeue
             $(openCards[0]).addClass("eval").delay(1000).queue(function() {
               $(this).removeClass("eval");
               $(this).dequeue();
@@ -141,7 +143,7 @@ $(document).ready(function() {
               //There is a div in the index.html for #dialog to add it's contents to.
               $("#dialog").append('<br/>' + "<strong>Game Stats:</strong> " + '<br/>' + moves.length + " moves " + '<br/>' + countstars + " stars" + '<br/>' + timer.text());
 
-              //display the pop-up 1 second after the last pair of cards patch! 
+              //display the pop-up 1 second after the last pair of cards patch!
               setTimeout(function() {
                 $("#dialog").dialog({
                   dialogClass: "no-close",
