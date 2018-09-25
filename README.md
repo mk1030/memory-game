@@ -1,11 +1,9 @@
 # Memory Game Project
 Dependencies
-index.html
-css/app.css
-js/app.js
+index.html  
+css/app.css  
+js/app.js  
 
-Thanks,
-Madeeha
 ## Table of Contents
 
 * [Instructions](#instructions)
