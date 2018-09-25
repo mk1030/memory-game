@@ -1,5 +1,5 @@
 # Memory Game Project
-Dependencies  
+Dependencies:    
 index.html  
 css/app.css  
 js/app.js  
