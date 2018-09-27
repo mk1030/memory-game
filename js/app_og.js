@@ -1,10 +1,11 @@
 $(document).ready(function() {
   //define global variables
-  let cards;
+  let cards = $(".cards").children();
   let openCards = [];
   let matchCards = [];
   //m keeps track of the moves made throught game play.
   let m = 0;
+  const deck = document.querySelector(".cards");
   //len stores length of the openCards array
   let len;
   let moves = [];
@@ -13,21 +14,6 @@ $(document).ready(function() {
   let minute = 0;
   let hour = 0;
   let timer = $(".timer");
-  let cardClasses = []
-  let cardHTML;
-
-
-  //create an array of classes
-  //Question for reviewer: I duplicated each class in the array, was there a better way of doing this, where you only list the class once?
-  cardClasses = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-anchor", "fa-anchor", "fa-leaf", "fa-leaf", "fa-bomb", "fa-bomb", "fa-bicycle", "fa-bicycle"];
-
-
-  for (i = 0; i < cardClasses.length; i++) {
-    cardsHTML = "<li class=\"card\">" + "<i class=\"fa " + cardClasses[i] + '"></i></li>';
-    $(".cards").append(cardsHTML);
-
-  }
-
 
   //This is a function for the timer.
   function startTimer() {
@@ -59,15 +45,15 @@ $(document).ready(function() {
   }
 
 
-  //grab the cards as html objects
-  cards = $(".cards").children();
+  //make cards into an array
+  cards = $.makeArray(cards);
 
 
   //shuffle the cards and then append them onto the page. Since there is only one deck on the page, it will replace the existing deck on the page.
   function shuffleCards() {
     var shuffledCards = shuffle(cards);
     $(shuffledCards).each(function(index, value) {
-      $(".cards").append($(value));
+      deck.append(value);
     });
   }
 

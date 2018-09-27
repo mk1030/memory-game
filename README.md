@@ -1,8 +1,7 @@
 # Memory Game Project
 Dependencies:    
-index.html  
-css/app.css  
-js/app.js  
+JQuery  
+JQuery UI
 
 ## Table of Contents
 
