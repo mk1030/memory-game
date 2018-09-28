@@ -6,18 +6,16 @@ JQuery UI
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
 
-## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Overview
 
-To get started, open `js/app.js` and start building out the app's functionality
+The Memory Game Project is a game created using HTML, CSS, Javascript, and JQuery for the Udacity Front-End Web Developer Nanodegree Program.  
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The game can be played by clicking on a card and then clicking on another card to find a matching pair of icons.  
 
-## Contributing
+Anytime, during the game you can reset the game and start over. The number of stars change throughout the game, depending on the amount of moves you make. 1 move = clicking on two cards.  
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+The game also keeps a track of your time. Once you successfully match all the cards, you will be able to see your game stats such as the time it took you to complete the game, the number of stars, and the number of moves! 
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Good Luck!!   
