@@ -3,11 +3,6 @@ Dependencies:
 JQuery  
 JQuery UI
 
-## Table of Contents
-
-* [Instructions](#instructions)
-
-
 ## Overview
 
 The Memory Game Project is a game created using HTML, CSS, Javascript, and JQuery for the Udacity Front-End Web Developer Nanodegree Program.  
